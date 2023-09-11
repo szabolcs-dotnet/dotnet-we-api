@@ -1,3 +1,4 @@
+using dotnet.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace dotnet.Controllers;
@@ -16,6 +17,7 @@ public class PriceController : ControllerBase
     [HttpPost("price")]
     public Price Get([FromBody] Price price)
     {
-        return price;
+        _logger.LogInformation("Received valid request.");
+        return PriceHelper.CalculateMissing(price);
     }
 }
